@@ -8,19 +8,26 @@
     <link rel="stylesheet" href="/styles.css" />
 </head>
 
-<body>
-    <main class="app">
-        <h1>Dialog Project</h1>
-        <p>Vite is set up with a starter CSS and JS entry point.</p>
-        <button command="show-modal" commandfor="my-dialog" type="button" class="primary-btn">Open Dialog</button>
-        <p id="dialogState" class="state" aria-live="polite">Dialog is closed.</p>
+<body
+    class="grid min-h-screen place-items-center bg-[radial-gradient(circle_at_top_right,_#e8f1ff_0%,_transparent_45%),radial-gradient(circle_at_bottom_left,_#fff4e6_0%,_transparent_50%),#f7f7f2] p-6 font-sans text-slate-800">
+    <main
+        class="grid w-full max-w-[640px] gap-3.5 rounded-xl border border-slate-200 bg-white p-7 shadow-[0_10px_30px_rgba(15,23,42,0.08)]">
+        <h1 class="mb-2 text-3xl leading-tight">Dialog Project</h1>
+        <p class="m-0 text-slate-600">Vite is set up with a starter CSS and JS entry point.</p>
+        <button command="show-modal" commandfor="my-dialog" type="button"
+            class="w-fit rounded-lg border border-[#1565c0] bg-[#1565c0] px-3.5 py-2.5 text-white">Open Dialog</button>
+        <p id="dialogState" class="text-[0.95rem] text-slate-600" aria-live="polite">Dialog is closed.</p>
 
-        <dialog id="my-dialog" aria-labelledby="dialogTitle">
-            <h2 id="dialogTitle">Native Dialog</h2>
-            <p>This dialog uses the built-in HTML dialog API.</p>
-            <form method="dialog" class="dialog-actions">
-                <button command="close" commandfor="my-dialog" type="button">Close</button>
-                <button value="confirm" type="submit" class="primary-btn">Confirm</button>
+        <dialog id="my-dialog"
+            class="w-[min(420px,calc(100vw-40px))] rounded-xl border border-slate-200 p-5 shadow-[0_18px_35px_rgba(15,23,42,0.22)]"
+            aria-labelledby="dialogTitle">
+            <h2 id="dialogTitle" class="mb-2 text-xl font-semibold">Native Dialog</h2>
+            <p class="m-0 text-slate-600">This dialog uses the built-in HTML dialog API.</p>
+            <form method="dialog" class="mt-4 flex justify-end gap-2.5">
+                <button command="close" commandfor="my-dialog" type="button"
+                    class="rounded-lg border border-slate-200 bg-white px-3.5 py-2.5 text-slate-800">Close</button>
+                <button value="confirm" type="submit"
+                    class="rounded-lg border border-[#1565c0] bg-[#1565c0] px-3.5 py-2.5 text-white">Confirm</button>
             </form>
         </dialog>
     </main>
