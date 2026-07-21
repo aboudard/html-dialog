@@ -16,6 +16,57 @@ A small Vite project demonstrating the native HTML dialog element with declarati
 - Dialog animation using opacity + scale
 - Opening transition based on @starting-style
 
+## Demo key points
+
+### HTML attributes used
+
+- `<dialog id="my-dialog">`: defines the native dialog element.
+- `command="show-modal"` on the open button: opens the target dialog as a modal.
+- `commandfor="my-dialog"` on the open button: targets the dialog by id.
+- `command="close"` on the close button: closes the target dialog.
+- `commandfor="my-dialog"` on the close button: targets the same dialog for close.
+- `<form method="dialog">`: submitting the form closes the dialog and sets a return value.
+- `<button value="confirm" type="submit">`: sets `dialog.returnValue` to `confirm` on submit.
+
+### JavaScript APIs and events associated
+
+- `dialog.addEventListener('close', handler)`: runs when the dialog closes.
+- `dialog.addEventListener('cancel', handler)`: runs when user cancels (for example, Escape key).
+- `dialog.returnValue`: reads the value from form submission (`confirm` in this demo).
+
+### Declarative-first, JavaScript fallback
+
+- This demo opens and closes with declarative attributes (`command`, `commandfor`) first.
+- If you need broader compatibility, the equivalent JS methods are:
+   - `dialog.showModal()` for opening.
+   - `dialog.close()` for closing.
+
+### Minimal example: declarative vs JavaScript fallback
+
+Declarative HTML:
+
+```html
+<button command="show-modal" commandfor="my-dialog" type="button">Open</button>
+
+<dialog id="my-dialog">
+   <form method="dialog">
+      <button command="close" commandfor="my-dialog" type="button">Close</button>
+      <button value="confirm" type="submit">Confirm</button>
+   </form>
+</dialog>
+```
+
+JavaScript fallback:
+
+```js
+const dialog = document.querySelector('#my-dialog');
+const openBtn = document.querySelector('[command="show-modal"][commandfor="my-dialog"]');
+const closeBtn = document.querySelector('[command="close"][commandfor="my-dialog"]');
+
+openBtn?.addEventListener('click', () => dialog?.showModal());
+closeBtn?.addEventListener('click', () => dialog?.close());
+```
+
 ## Project setup
 
 1. Install dependencies:
