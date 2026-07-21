@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dialog Project</title>
+    <link rel="stylesheet" href="/styles.css" />
+</head>
+
+<body>
+    <main class="app">
+        <h1>Dialog Project</h1>
+        <p>Vite is set up with a starter CSS and JS entry point.</p>
+        <button command="show-modal" commandfor="my-dialog" type="button" class="primary-btn">Open Dialog</button>
+        <p id="dialogState" class="state" aria-live="polite">Dialog is closed.</p>
+
+        <dialog id="my-dialog" aria-labelledby="dialogTitle">
+            <h2 id="dialogTitle">Native Dialog</h2>
+            <p>This dialog uses the built-in HTML dialog API.</p>
+            <form method="dialog" class="dialog-actions">
+                <button command="close" commandfor="my-dialog" type="button">Close</button>
+                <button value="confirm" type="submit" class="primary-btn">Confirm</button>
+            </form>
+        </dialog>
+    </main>
+    <script type="module" src="/main.js"></script>
+</body>
+
+</html>
