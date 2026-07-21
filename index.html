@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dialog Project</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="stylesheet" href="/styles.css" />
 </head>
 
@@ -12,10 +13,19 @@
     class="grid min-h-screen place-items-center bg-[radial-gradient(circle_at_top_right,_#e8f1ff_0%,_transparent_45%),radial-gradient(circle_at_bottom_left,_#fff4e6_0%,_transparent_50%),#f7f7f2] p-6 font-sans text-slate-800">
     <main
         class="grid w-full max-w-[640px] gap-3.5 rounded-xl border border-slate-200 bg-white p-7 shadow-[0_10px_30px_rgba(15,23,42,0.08)]">
-        <h1 class="mb-2 text-3xl leading-tight">Dialog Project</h1>
+        <h1 class="mb-2 inline-flex items-center gap-2 text-3xl leading-tight">
+            <img src="/favicon.svg" alt="" aria-hidden="true" class="h-7 w-7 shrink-0" />
+            <span>Dialog Project</span>
+        </h1>
         <p class="m-0 text-slate-600">Vite is set up with a starter CSS and JS entry point.</p>
         <button command="show-modal" commandfor="my-dialog" type="button"
-            class="w-fit rounded-lg border border-[#1565c0] bg-[#1565c0] px-3.5 py-2.5 text-white">Open Dialog</button>
+            class="inline-flex w-fit items-center gap-2 rounded-lg border border-[#1565c0] bg-[#1565c0] px-3.5 py-2.5 text-white">
+            <svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+            </svg>
+            <span>Open Dialog</span>
+        </button>
         <p id="dialogState" class="text-[0.95rem] text-slate-600" aria-live="polite">Dialog is closed.</p>
 
         <dialog id="my-dialog"
@@ -25,9 +35,21 @@
             <p class="m-0 text-slate-600">This dialog uses the built-in HTML dialog API.</p>
             <form method="dialog" class="mt-4 flex justify-end gap-2.5">
                 <button command="close" commandfor="my-dialog" type="button"
-                    class="rounded-lg border border-slate-200 bg-white px-3.5 py-2.5 text-slate-800">Close</button>
+                    class="inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-3.5 py-2.5 text-slate-800">
+                    <svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                    <span>Close</span>
+                </button>
                 <button value="confirm" type="submit"
-                    class="rounded-lg border border-[#1565c0] bg-[#1565c0] px-3.5 py-2.5 text-white">Confirm</button>
+                    class="inline-flex items-center gap-2 rounded-lg border border-[#1565c0] bg-[#1565c0] px-3.5 py-2.5 text-white">
+                    <svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                    </svg>
+                    <span>Confirm</span>
+                </button>
             </form>
         </dialog>
     </main>
