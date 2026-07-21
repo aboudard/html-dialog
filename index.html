@@ -34,7 +34,20 @@
         <dialog id="my-dialog"
             class="w-[min(420px,calc(100vw-40px))] rounded-xl border border-slate-200 p-5 shadow-[0_18px_35px_rgba(15,23,42,0.22)]"
             aria-labelledby="dialogTitle">
-            <h2 id="dialogTitle" class="mb-2 text-xl font-semibold">Native Dialog</h2>
+            <div class="mb-2 flex items-center justify-between">
+                <h2 id="dialogTitle" class="text-xl font-semibold">Native Dialog</h2>
+                <button type="button" command="close" commandfor="my-dialog"
+                    aria-label="Close dialog"
+                    class="inline-flex items-center justify-center rounded-lg p-1.5 text-slate-400
+                        transition-colors duration-200
+                        hover:bg-slate-100 hover:text-slate-900
+                        active:bg-slate-200 active:text-slate-800">
+                    <svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
             <p class="m-0 text-slate-600">This dialog uses the built-in HTML dialog API.</p>
             <form method="dialog" class="mt-4 flex justify-end gap-2.5">
                 <button command="close" commandfor="my-dialog" type="button"
