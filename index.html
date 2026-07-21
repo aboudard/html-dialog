@@ -19,7 +19,10 @@
         </h1>
         <p class="m-0 text-slate-600">Vite is set up with a starter CSS and JS entry point.</p>
         <button command="show-modal" commandfor="my-dialog" type="button"
-            class="inline-flex w-fit items-center gap-2 rounded-lg border border-[#1565c0] bg-[#1565c0] px-3.5 py-2.5 text-white">
+            class="inline-flex w-fit items-center gap-2 rounded-lg border border-[#1565c0] bg-[#1565c0] px-3.5 py-2.5 text-white
+                transition-colors duration-200 
+                hover:bg-[#0f4c8a] hover:border-[#0f4c8a] 
+                active:bg-[#0b3a6e] active:border-[#0b3a6e]">
             <svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                 aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
@@ -35,7 +38,10 @@
             <p class="m-0 text-slate-600">This dialog uses the built-in HTML dialog API.</p>
             <form method="dialog" class="mt-4 flex justify-end gap-2.5">
                 <button command="close" commandfor="my-dialog" type="button"
-                    class="inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-3.5 py-2.5 text-slate-800">
+                    class="inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-3.5 py-2.5 text-slate-800
+                        transition-colors duration-200 
+                        hover:bg-slate-50 hover:border-slate-300 hover:text-slate-900 
+                        active:bg-slate-100 active:border-slate-400 active:text-slate-900">
                     <svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                         aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -43,7 +49,10 @@
                     <span>Close</span>
                 </button>
                 <button value="confirm" type="submit"
-                    class="inline-flex items-center gap-2 rounded-lg border border-[#1565c0] bg-[#1565c0] px-3.5 py-2.5 text-white">
+                    class="inline-flex items-center gap-2 rounded-lg border border-[#1565c0] bg-[#1565c0] px-3.5 py-2.5 text-white
+                        transition-colors duration-200 
+                        hover:bg-[#0f4c8a] hover:border-[#0f4c8a] 
+                        active:bg-[#0b3a6e] active:border-[#0b3a6e]">
                     <svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                         aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
