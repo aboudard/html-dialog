@@ -87,6 +87,23 @@ closeBtn?.addEventListener('click', () => dialog?.close());
 - build: Builds the project into dist
 - preview: Serves the built output from dist
 
+## Deploy to GitHub Pages
+
+This repository includes a workflow at .github/workflows/deploy-pages.yml.
+
+- Trigger: push to main (and manual run with workflow_dispatch)
+- Build command in CI: npm run build -- --base=/${{ github.event.repository.name }}/
+- Artifact: dist/
+
+One-time repository setup:
+
+1. Open repository Settings > Pages.
+2. Set Source to GitHub Actions.
+
+Expected site URL for this repository:
+
+- https://aboudard.github.io/html-dialog/
+
 ## File overview
 
 - index.html: Markup and Tailwind utility classes
