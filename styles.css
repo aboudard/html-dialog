@@ -1,8 +1,7 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 dialog {
+  margin: auto;
   opacity: 0;
   transform: scale(0.94);
   transition:
