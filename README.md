@@ -15,6 +15,7 @@ A small Vite project demonstrating the native HTML dialog element with declarati
 - Confirm action using form method="dialog"
 - Dialog animation using opacity + scale
 - Opening transition based on @starting-style
+- Pressing Escape cancels the dialog (native browser behavior)
 
 ## Demo key points
 
