@@ -5,7 +5,7 @@ A small Vite project demonstrating the native HTML dialog element with declarati
 ## Stack
 
 - Vite
-- Tailwind CSS (local build via PostCSS)
+- Tailwind CSS (built via Vite plugin)
 - Native HTML dialog API
 
 ## Features
@@ -27,6 +27,7 @@ A small Vite project demonstrating the native HTML dialog element with declarati
 - `commandfor="my-dialog"` on the close button: targets the same dialog for close.
 - `<form method="dialog">`: submitting the form closes the dialog and sets a return value.
 - `<button value="confirm" type="submit">`: sets `dialog.returnValue` to `confirm` on submit.
+- Pressing Escape cancels the dialog (native browser behavior)
 
 ### JavaScript APIs and events associated
 
@@ -107,23 +108,17 @@ Expected site URL for this repository:
 ## File overview
 
 - index.html: Markup and Tailwind utility classes
-- styles.css: Tailwind layers plus dialog-specific transition rules
+- styles.css: Tailwind import plus dialog-specific transition rules
 - main.js: Dialog state text updates (close/cancel events)
-- tailwind.config.js: Tailwind content scanning config
-- postcss.config.js: PostCSS plugin config
 
-## Tailwind (local)
+## Tailwind (Vite plugin)
 
-Tailwind is compiled locally through Vite + PostCSS.
+Tailwind CSS v4 is compiled through the `@tailwindcss/vite` Vite plugin.
 
-- Tailwind directives are in styles.css:
-  - @tailwind base;
-  - @tailwind components;
-  - @tailwind utilities;
-
-- Content scanning is configured in tailwind.config.js for:
-  - index.html
-  - main.js
+- Tailwind is imported in styles.css:
+  - `@import "tailwindcss";`
+- Configuration is in vite.config.js via the `tailwindcss()` plugin.
+- No `tailwind.config.js` or PostCSS config is needed in v4.
 
 ## Notes on dialog transitions
 
@@ -150,12 +145,9 @@ Test on your target browser versions before release. If compatibility is critica
 
 ### Tailwind classes are not applied
 
-- Make sure styles.css includes these directives at the top:
-   - @tailwind base;
-   - @tailwind components;
-   - @tailwind utilities;
-- Verify tailwind.config.js content includes all files where classes are used (for this project: index.html and main.js).
-- Restart the dev server after changing tailwind.config.js.
+- Make sure styles.css includes `@import "tailwindcss";` at the top.
+- Verify that vite.config.js includes the `tailwindcss()` plugin.
+- Restart the dev server after changing vite.config.js.
 
 ### New Tailwind class does not appear in output
 
