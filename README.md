@@ -1,188 +1,59 @@
-# html-dialog
+# HTML Dialog Playground
 
-A small Vite project demonstrating the native HTML dialog element with declarative commands and animated open/close transitions.
+This repository contains a small native browser dialog demo built with plain HTML, CSS, and Vite. The current implementation focuses on the browser's built-in `<dialog>` element, showing how to open, close, confirm, and animate it without a framework.
 
-## Stack
+## Current project
 
-- Vite
-- Tailwind CSS (local build via PostCSS)
-- Native HTML dialog API
+The working implementation lives in the [HTML](HTML) folder and demonstrates:
 
-## Features
+- native `<dialog>` usage
+- declarative commands with `command` and `commandfor`
+- form-based confirmation flow with `method="dialog"`
+- open and close transitions using CSS
+- a lightweight Vite setup with Tailwind
 
-- Declarative open button using command and commandfor
-- Declarative close button using command and commandfor
-- Confirm action using form method="dialog"
-- Dialog animation using opacity + scale
-- Opening transition based on @starting-style
-- Pressing Escape cancels the dialog (native browser behavior)
+## Repository layout
 
-## Demo key points
+- [HTML](HTML): the native dialog demo project
+- [Angular](Angular): reserved for the Angular version of this project
 
-### HTML attributes used
+## Why this repo exists
 
-- `<dialog id="my-dialog">`: defines the native dialog element.
-- `command="show-modal"` on the open button: opens the target dialog as a modal.
-- `commandfor="my-dialog"` on the open button: targets the dialog by id.
-- `command="close"` on the close button: closes the target dialog.
-- `commandfor="my-dialog"` on the close button: targets the same dialog for close.
-- `<form method="dialog">`: submitting the form closes the dialog and sets a return value.
-- `<button value="confirm" type="submit">`: sets `dialog.returnValue` to `confirm` on submit.
+The goal is to compare the same dialog interaction pattern across implementations:
 
-### JavaScript APIs and events associated
+- native browser API in HTML
+- component-based Angular version in the future
 
-- `dialog.addEventListener('close', handler)`: runs when the dialog closes.
-- `dialog.addEventListener('cancel', handler)`: runs when user cancels (for example, Escape key).
-- `dialog.returnValue`: reads the value from form submission (`confirm` in this demo).
+This makes it easy to see how the same user experience translates from a minimal declarative approach to a framework-driven implementation.
 
-### Declarative-first, JavaScript fallback
+## Run the current demo
 
-- This demo opens and closes with declarative attributes (`command`, `commandfor`) first.
-- If you need broader compatibility, the equivalent JS methods are:
-   - `dialog.showModal()` for opening.
-   - `dialog.close()` for closing.
+From the root of the repository:
 
-### Minimal example: declarative vs JavaScript fallback
-
-Declarative HTML:
-
-```html
-<button command="show-modal" commandfor="my-dialog" type="button">Open</button>
-
-<dialog id="my-dialog">
-   <form method="dialog">
-      <button command="close" commandfor="my-dialog" type="button">Close</button>
-      <button value="confirm" type="submit">Confirm</button>
-   </form>
-</dialog>
+```bash
+cd HTML
+npm install
+npm run dev
 ```
 
-JavaScript fallback:
+Then open the local Vite URL in the browser.
 
-```js
-const dialog = document.querySelector('#my-dialog');
-const openBtn = document.querySelector('[command="show-modal"][commandfor="my-dialog"]');
-const closeBtn = document.querySelector('[command="close"][commandfor="my-dialog"]');
+## Build for production
 
-openBtn?.addEventListener('click', () => dialog?.showModal());
-closeBtn?.addEventListener('click', () => dialog?.close());
+```bash
+cd HTML
+npm run build
 ```
 
-## Project setup
+## Planned Angular version
 
-1. Install dependencies:
-   npm install
+The Angular folder is intended for a future refactor that keeps the same behavior and UX while using Angular patterns such as:
 
-2. Start the dev server:
-   npm run dev
+- component-based dialog structure
+- reusable dialog service or wrapper
+- Angular templates and event handling
+- optional animations with Angular transitions or CSS
 
-3. Build for production:
-   npm run build
+## Notes
 
-4. Preview the production build:
-   npm run preview
-
-## Available scripts
-
-- dev: Runs Vite in development mode
-- build: Builds the project into dist
-- preview: Serves the built output from dist
-
-## Deploy to GitHub Pages
-
-This repository includes a workflow at .github/workflows/deploy-pages.yml.
-
-- Trigger: push to main (and manual run with workflow_dispatch)
-- Build command in CI: npm run build -- --base=/${{ github.event.repository.name }}/
-- Artifact: dist/
-
-One-time repository setup:
-
-1. Open repository Settings > Pages.
-2. Set Source to GitHub Actions.
-
-Expected site URL for this repository:
-
-- https://aboudard.github.io/html-dialog/
-
-## File overview
-
-- index.html: Markup and Tailwind utility classes
-- styles.css: Tailwind layers plus dialog-specific transition rules
-- main.js: Dialog state text updates (close/cancel events)
-- tailwind.config.js: Tailwind content scanning config
-- postcss.config.js: PostCSS plugin config
-
-## Tailwind (local)
-
-Tailwind is compiled locally through Vite + PostCSS.
-
-- Tailwind directives are in styles.css:
-  - @tailwind base;
-  - @tailwind components;
-  - @tailwind utilities;
-
-- Content scanning is configured in tailwind.config.js for:
-  - index.html
-  - main.js
-
-## Notes on dialog transitions
-
-The transition behavior uses native dialog rendering plus CSS for animation.
-
-- dialog scales and fades in/out
-- backdrop fades in/out
-- @starting-style is used for the opening transition baseline
-
-Because @starting-style and discrete display/overlay transitions are advanced CSS features, behavior may vary in older browsers.
-
-## Compatibility matrix
-
-| Feature | Chrome / Edge | Firefox | Safari | Fallback |
-| --- | --- | --- | --- | --- |
-| Native `<dialog>` element | Supported in modern versions | Supported in modern versions | Supported in modern versions | Use a custom modal pattern if unavailable |
-| `command` + `commandfor` declarative dialog actions | Newer support, verify in your target version | Limited / evolving support | Limited / evolving support | Add JS handlers with `showModal()` and `close()` |
-| CSS `@starting-style` | Newer support | Newer support | Newer support | Keep functional behavior without transition |
-| `allow-discrete` (`display` / `overlay` transition) | Newer support | Partial / evolving support | Partial / evolving support | Keep opacity/transform transition only |
-
-Test on your target browser versions before release. If compatibility is critical, enable a JavaScript fallback path in main.js for open/close actions and keep animations progressive.
-
-## Troubleshooting
-
-### Tailwind classes are not applied
-
-- Make sure styles.css includes these directives at the top:
-   - @tailwind base;
-   - @tailwind components;
-   - @tailwind utilities;
-- Verify tailwind.config.js content includes all files where classes are used (for this project: index.html and main.js).
-- Restart the dev server after changing tailwind.config.js.
-
-### New Tailwind class does not appear in output
-
-- Confirm the class name is written as a static string in markup.
-- If class names are generated dynamically in JavaScript, Tailwind may not detect them during scan.
-- Run a clean build with npm run build and check the generated CSS in dist/assets.
-
-### Dialog opens, but open/close transition does not animate
-
-- Check that styles.css still contains dialog transition rules, including @starting-style blocks.
-- Ensure the dialog is opened via command="show-modal" and commandfor="my-dialog".
-- Verify the dialog id matches commandfor exactly.
-
-### Dialog button commands do nothing
-
-- Confirm your browser supports declarative dialog commands (command and commandfor attributes).
-- As a fallback for unsupported browsers, you can wire showModal() and close() in main.js.
-
-### Build works, but preview looks different from dev
-
-- Re-run npm run build and then npm run preview to ensure dist reflects latest changes.
-- Clear browser cache or use a hard refresh when testing preview.
-
-### Dependency or toolchain issues
-
-- Reinstall dependencies:
-   - Remove node_modules and package-lock.json
-   - Run npm install
-- Verify Node.js is up to date (recent LTS recommended).
+This project is intentionally small and focused on browser-native dialog capabilities. The Angular version will likely preserve the same interaction model while adapting it to Angular conventions and component structure.
